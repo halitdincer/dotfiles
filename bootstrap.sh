@@ -64,6 +64,10 @@ ln -sf "$DOTFILES/configs/kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"
 # Symlink shell configs
 # ln -sf "$DOTFILES/configs/.zshrc" "$HOME/.zshrc"
 
+# macOS tweaks
+echo "==> Applying macOS tweaks..."
+bash "$DOTFILES/macos/hide-default-apps.sh"
+
 echo ""
 echo "==> Bootstrap complete."
 echo "    Review $DOTFILES/README.md for next steps."
