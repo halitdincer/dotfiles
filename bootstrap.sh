@@ -10,6 +10,10 @@ echo "==> Starting bootstrap..."
 echo "==> Linking git config..."
 ln -sf "$DOTFILES/configs/.gitconfig" "$HOME/.gitconfig"
 
+# CLAUDE.md
+echo "==> Linking CLAUDE.md..."
+ln -sf "$DOTFILES/CLAUDE.md" "$HOME/CLAUDE.md"
+
 # Symlink shell configs
 # ln -sf "$DOTFILES/configs/.zshrc" "$HOME/.zshrc"
 
