@@ -1,0 +1,4 @@
+# Never commit private keys
+configs/ssh/id_ed25519
+*.pem
+*.key
