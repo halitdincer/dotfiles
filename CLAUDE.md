@@ -15,6 +15,13 @@
 - Claude Code (via `brew install --cask claude-code`)
 - gh CLI (via `brew install gh`)
 - Kitty terminal (via `brew install --cask kitty`)
+- Google Chrome (via `brew install --cask google-chrome`)
+- Spotify (via `brew install --cask spotify`)
+- VSCode (via `brew install --cask visual-studio-code`)
+- IntelliJ IDEA Ultimate (via `brew install --cask intellij-idea`)
+- Zoom (via `brew install --cask zoom`) — needs manual install, requires sudo
+- Neovim (via `brew install neovim`)
+- Tmux (via `brew install tmux`)
 
 ## Git Identity
 - username: `halitdincer`

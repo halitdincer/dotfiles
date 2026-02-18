@@ -16,11 +16,21 @@ else
   echo "==> Homebrew already installed, skipping."
 fi
 
-# Core tools
-echo "==> Installing core tools via Homebrew..."
+# CLI tools
+echo "==> Installing CLI tools..."
 brew install gh
+brew install neovim
+brew install tmux
+
+# GUI apps
+echo "==> Installing GUI apps..."
 brew install --cask claude-code
 brew install --cask kitty
+brew install --cask google-chrome
+brew install --cask spotify
+brew install --cask visual-studio-code
+brew install --cask intellij-idea
+brew install --cask zoom
 
 # Git config
 echo "==> Linking git config..."
