@@ -3,7 +3,7 @@
 # Removes unwanted Apple apps from Launchpad.
 # They cannot be fully deleted on macOS 15 (SIP-protected system volume).
 
-APPS_TO_HIDE=("Music" "TV" "News" "Tips")
+APPS_TO_HIDE=("Music" "TV" "News" "Tips" "Terminal")
 
 LAUNCHPAD_DB=$(find /private/var/folders -name com.apple.dock.launchpad -type d 2>/dev/null | head -1)/db/db
 
