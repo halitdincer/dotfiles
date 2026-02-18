@@ -6,6 +6,21 @@ DOTFILES="$HOME/Developers/dotfiles"
 
 echo "==> Starting bootstrap..."
 
+# Homebrew
+if ! command -v brew &>/dev/null; then
+  echo "==> Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  # Apple Silicon: add brew to PATH for this session
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  echo "==> Homebrew already installed, skipping."
+fi
+
+# Core tools
+echo "==> Installing core tools via Homebrew..."
+brew install gh
+brew install --cask claude-code
+
 # Git config
 echo "==> Linking git config..."
 ln -sf "$DOTFILES/configs/.gitconfig" "$HOME/.gitconfig"
