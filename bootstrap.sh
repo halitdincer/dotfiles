@@ -20,6 +20,7 @@ fi
 echo "==> Installing core tools via Homebrew..."
 brew install gh
 brew install --cask claude-code
+brew install --cask kitty
 
 # Git config
 echo "==> Linking git config..."
@@ -44,6 +45,11 @@ if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
 else
   echo "==> SSH key already exists, skipping keygen."
 fi
+
+# Kitty config
+echo "==> Linking Kitty config..."
+mkdir -p "$HOME/.config/kitty"
+ln -sf "$DOTFILES/configs/kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"
 
 # Symlink shell configs
 # ln -sf "$DOTFILES/configs/.zshrc" "$HOME/.zshrc"

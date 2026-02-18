@@ -13,6 +13,8 @@
 ## Installed So Far (New Laptop)
 - Homebrew
 - Claude Code (via `brew install --cask claude-code`)
+- gh CLI (via `brew install gh`)
+- Kitty terminal (via `brew install --cask kitty`)
 
 ## Git Identity
 - username: `halitdincer`
