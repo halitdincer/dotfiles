@@ -23,10 +23,10 @@ dotfiles/
 brew install --cask claude-code
 
 # 3. Clone this repo
-git clone <repo-url> ~/dotfiles
+git clone <repo-url> ~/Developers/dotfiles
 
 # 4. Run bootstrap
-cd ~/dotfiles && ./bootstrap.sh
+cd ~/Developers/dotfiles && ./bootstrap.sh
 ```
 
 ## Setup Log
@@ -34,4 +34,6 @@ cd ~/dotfiles && ./bootstrap.sh
 ### 2026-02-18 — New MacBook
 - Installed Homebrew
 - Installed Claude Code
-- Initialized dotfiles repo
+- Initialized dotfiles repo at `~/Developers/dotfiles`
+- Configured git: `user.name=halitdincer`, `user.email=github@halitdincer.com`
+- Added `.gitconfig` to `configs/` with bootstrap symlink step
