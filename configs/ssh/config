@@ -3,3 +3,24 @@ Host github.com
   User git
   IdentityFile ~/.ssh/id_ed25519
   AddKeysToAgent yes
+
+# Homeserver — all use id_ed25519 (add to a new server: curl https://github.com/halitdincer.keys >> ~/.ssh/authorized_keys)
+Host homeserver-proxmox
+  HostName 192.168.2.50
+  User root
+  IdentityFile ~/.ssh/id_ed25519
+
+Host homeserver-k3s
+  HostName 192.168.2.216
+  User root
+  IdentityFile ~/.ssh/id_ed25519
+
+Host homeserver-immich
+  HostName 192.168.2.202
+  User root
+  IdentityFile ~/.ssh/id_ed25519
+
+Host homeserver-openclaw
+  HostName 192.168.2.208
+  User dincer
+  IdentityFile ~/.ssh/id_ed25519

@@ -6,10 +6,38 @@ Personal dotfiles and setup scripts for my MacBook and homeserver. Managed throu
 
 ```
 dotfiles/
-├── configs/        # App and tool config files (symlinked to their real locations)
-├── scripts/        # Setup and utility scripts
-├── macos/          # macOS-specific settings and defaults
-├── bootstrap.sh    # Run this first on a new machine
+├── configs/
+│   ├── .gitconfig          → ~/.gitconfig
+│   ├── kitty/              → ~/.config/kitty/
+│   │   ├── kitty.conf
+│   │   └── font-zoom.sh
+│   ├── nvim/               → ~/.config/nvim/
+│   │   ├── init.lua
+│   │   └── lua/
+│   │       ├── core/
+│   │       │   ├── options.lua
+│   │       │   ├── keymaps.lua
+│   │       │   └── autocmds.lua
+│   │       └── plugins/
+│   │           ├── colorscheme.lua
+│   │           ├── treesitter.lua
+│   │           ├── lsp.lua
+│   │           ├── cmp.lua
+│   │           ├── telescope.lua
+│   │           ├── neo-tree.lua
+│   │           ├── gitsigns.lua
+│   │           ├── lualine.lua
+│   │           └── ui.lua
+│   ├── ssh/                → ~/.ssh/
+│   │   ├── config
+│   │   └── id_ed25519.pub
+│   └── tmux/               → ~/.config/tmux/
+│       └── tmux.conf
+├── macos/
+│   └── hide-default-apps.sh
+├── scripts/                # utility scripts (empty)
+├── bootstrap.sh            # run on a new machine
+├── CLAUDE.md               # context file for Claude Code (symlinked to ~/)
 └── README.md
 ```
 
@@ -29,11 +57,46 @@ git clone <repo-url> ~/Developers/dotfiles
 cd ~/Developers/dotfiles && ./bootstrap.sh
 ```
 
+Bootstrap installs all tools, creates all symlinks, and applies macOS tweaks in one shot.
+
+## Configs
+
+### Neovim
+Full IDE setup with lazy.nvim. Plugins: Catppuccin Mocha, Treesitter, LSP (pyright, ts_ls, lua_ls), nvim-cmp, Telescope, neo-tree, gitsigns, lualine, conform.
+
+Formatters managed outside Mason (Homebrew): `black`, `ripgrep`.
+Formatters managed by Mason: `prettier`, `stylua`.
+
+Key mappings: see `configs/nvim/lua/core/keymaps.lua`.
+
+### Tmux
+Prefix: `Ctrl+Space`. Splits: `prefix v` (vertical), `prefix s` (horizontal). Pane nav: `prefix h/j/k/l`. Minimal status bar using Catppuccin Mocha colours.
+
+### Kitty
+Font: SF Mono 16pt. Theme: Terminal.app Clear Dark. Font zoom via `font-zoom.sh` (`Cmd+=`, `Cmd+-`, `Cmd+0`).
+
 ## Setup Log
 
 ### 2026-02-18 — New MacBook
-- Installed Homebrew
-- Installed Claude Code
-- Initialized dotfiles repo at `~/Developers/dotfiles`
-- Configured git: `user.name=halitdincer`, `user.email=github@halitdincer.com`
-- Added `.gitconfig` to `configs/` with bootstrap symlink step
+- Installed Homebrew, Claude Code, gh, Kitty, Chrome, Spotify, VSCode, IntelliJ, Zoom, Neovim, tmux
+- Initialized dotfiles repo
+- Configured git identity, SSH, CLAUDE.md symlink
+- Added Kitty config with font-zoom utility
+
+### 2026-02-18 — Neovim + tmux
+- Built full Neovim IDE config (lazy.nvim, LSP, Treesitter, Telescope, Catppuccin)
+- Installed Node.js, Python 3.14, black, ripgrep to support Mason tooling
+- Built tmux config (Ctrl+Space prefix, vim pane nav, minimal Catppuccin status bar)
+
+### 2026-02-18 — Tailscale
+- Installed Tailscale (`brew install --cask tailscale`) — requires sudo, run in interactive terminal
+
+### 2026-02-19 — Homeserver SSH access
+- Added `id_ed25519` public key to homeserver (K3s VM root) via Proxmox console: `curl https://github.com/halitdincer.keys >> /root/.ssh/authorized_keys`
+- SSH config updated with homeserver host aliases (`homeserver-k3s`, `homeserver-proxmox`, etc.) — all use `id_ed25519`
+- Old `homeserver_ed25519` key no longer exists on this machine; GitHub-hosted key is the canonical method going forward
+
+### 2026-02-19 — Homeserver power outage recovery
+- After electric outage, K3s restarted; ArgoCD repo-server, Vault, and external-secrets all needed manual recovery
+- Recovery order: 1) restart ArgoCD deployments, 2) unseal Vault (2 of 3 keys), 3) restart external-secrets operator
+- Full procedure documented in `homeserver-iac/CLAUDE.md` under "Power outage / full cluster restart recovery"
