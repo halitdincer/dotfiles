@@ -21,6 +21,10 @@ echo "==> Installing CLI tools..."
 brew install gh
 brew install neovim
 brew install tmux
+brew install node
+brew install python
+brew install black
+brew install ripgrep
 
 # GUI apps
 echo "==> Installing GUI apps..."
@@ -31,14 +35,17 @@ brew install --cask spotify
 brew install --cask visual-studio-code
 brew install --cask intellij-idea
 brew install --cask zoom
+brew install --cask whatsapp
 
 # Git config
 echo "==> Linking git config..."
 ln -sf "$DOTFILES/configs/.gitconfig" "$HOME/.gitconfig"
 
-# CLAUDE.md
-echo "==> Linking CLAUDE.md..."
+# CLAUDE.md (Claude Code global) + AGENTS.md (OpenCode global) — both point to the same source
+echo "==> Linking CLAUDE.md and AGENTS.md..."
 ln -sf "$DOTFILES/CLAUDE.md" "$HOME/CLAUDE.md"
+mkdir -p "$HOME/.config/opencode"
+ln -sf "$DOTFILES/CLAUDE.md" "$HOME/.config/opencode/AGENTS.md"
 
 # SSH config
 echo "==> Linking SSH config..."
@@ -56,10 +63,22 @@ else
   echo "==> SSH key already exists, skipping keygen."
 fi
 
+# Tmux config
+echo "==> Linking tmux config..."
+mkdir -p "$HOME/.config/tmux"
+ln -sf "$DOTFILES/configs/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
+
 # Kitty config
 echo "==> Linking Kitty config..."
 mkdir -p "$HOME/.config/kitty"
 ln -sf "$DOTFILES/configs/kitty/kitty.conf" "$HOME/.config/kitty/kitty.conf"
+ln -sf "$DOTFILES/configs/kitty/font-zoom.sh" "$HOME/.config/kitty/font-zoom.sh"
+chmod +x "$DOTFILES/configs/kitty/font-zoom.sh"
+
+# Neovim config
+echo "==> Linking Neovim config..."
+mkdir -p "$HOME/.config"
+ln -sf "$DOTFILES/configs/nvim" "$HOME/.config/nvim"
 
 # Symlink shell configs
 # ln -sf "$DOTFILES/configs/.zshrc" "$HOME/.zshrc"
