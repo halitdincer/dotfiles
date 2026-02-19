@@ -96,7 +96,11 @@ Font: SF Mono 16pt. Theme: Terminal.app Clear Dark. Font zoom via `font-zoom.sh`
 - SSH config updated with homeserver host aliases (`homeserver-k3s`, `homeserver-proxmox`, etc.) — all use `id_ed25519`
 - Old `homeserver_ed25519` key no longer exists on this machine; GitHub-hosted key is the canonical method going forward
 
-### 2026-02-19 — Homeserver power outage recovery
+### 2026-02-19 — Homeserver power outage recovery + hardening
 - After electric outage, K3s restarted; ArgoCD repo-server, Vault, and external-secrets all needed manual recovery
-- Recovery order: 1) restart ArgoCD deployments, 2) unseal Vault (2 of 3 keys), 3) restart external-secrets operator
-- Full procedure documented in `homeserver-iac/CLAUDE.md` under "Power outage / full cluster restart recovery"
+- Deployed `vault-unsealer` — polls Vault every 30s and auto-unseals after any restart; keys stored as SealedSecret in git
+- Bumped K3s VM (105) from 2 cores/4GB to 4 cores/8GB — node was at 100% CPU/memory requests
+- Installed `kubeseal` via Homebrew for sealing secrets locally against the cluster's public key
+- Added `~/.config/opencode/AGENTS.md → dotfiles/CLAUDE.md` symlink (OpenCode global context)
+- Recovery order going forward: 1) restart ArgoCD, 2) restart external-secrets (Vault unseals itself)
+- Full procedure in `homeserver-iac/CLAUDE.md` under "Power outage / full cluster restart recovery"
