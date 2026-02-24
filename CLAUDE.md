@@ -12,7 +12,8 @@
 
 ## Installed So Far (New Laptop)
 - Homebrew
-- Claude Code (via `brew install --cask claude-code`)
+- Claude Code / OpenCode (via `brew install --cask claude-code`)
+- OpenCode config at `~/.config/opencode/` → symlinked AGENTS.md to dotfiles/CLAUDE.md
 - gh CLI (via `brew install gh`)
 - Kitty terminal (via `brew install --cask kitty`)
 - Google Chrome (via `brew install --cask google-chrome`)
@@ -29,6 +30,11 @@
 - ripgrep (via `brew install ripgrep`) — required for Telescope live grep
 - Tailscale (via `brew install --cask tailscale`) — needs manual install, requires sudo
 - kubeseal (via `brew install kubeseal`) — for sealing secrets against the cluster's public key
+- rbenv (via `brew install rbenv ruby-build`) — Ruby version manager
+- Ruby 3.2.10 (via `rbenv install 3.2.10`) — for Rails development
+- Rails 7.2.2 (via `gem install rails -v 7.2.2`) — Ruby on Rails framework
+- MySQL 8.0 (via `brew install mysql`) — database server (run: `brew services start mysql`)
+- Redis (via `brew install redis`) — key-value store for Sidekiq (run: `brew services start redis`)
 
 ## Git Identity
 - username: `halitdincer`
@@ -49,6 +55,8 @@
 - `~/Developers/dotfiles` — shell config, tool configs, and setup scripts
 - `~/Developers/homeserver-iac` — infrastructure-as-code for the homeserver
 - `~/Developers/job-scout` — job scouting project
+- `~/Developers/flight-tracker` — full-stack flight tracker (Rails API + React + GraphQL)
+- `~/Developers/personal-site` — personal website at www.halitdincer.com (static HTML+CSS, nginx, K3s)
 
 ## Homeserver
 - Proxmox host: `192.168.2.50` — Dell OptiPlex, Proxmox VE 9.1.1
